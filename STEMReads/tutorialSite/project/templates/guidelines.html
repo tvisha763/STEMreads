@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/guidelines1.css' %}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway|Nanum+Myeongjo|Ysabeau+Office:wght@100&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <title>Guidelines</title>
+</head>
+<body>
+
+    <nav style = "display: block;" class="navbar navbar-default navbar-fixed-top navbar-expand-lg" id="nav">
+        <div class="container-fluid">
+          <a class="navbar-brand" style="color:#E7DDF6;" href="{% url 'dashboard' %}">STEM Reads</a>
+          <button style="color:#E7DDF6;"  class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span style="color:#E7DDF6;"  class="navbar-toggler-icon"></span>
+          </button>
+          <div style="color:#E7DDF6;"  class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if status == 1 %}
+              <li class="nav-item">
+                <a class="nav-link active" style="color:#E7DDF6;" aria-current="page" href="{% url 'application' %}">Apply for Writer</a>
+              </li>
+              {% endif %}
+              {% if status == 2 %}
+              <li class="nav-item">
+                <a class="nav-link active" style="color:#E7DDF6;" aria-current="page" href="{% url 'write-post' %}">Write Post</a>
+              </li>
+              {% endif %}
+              {% if status == 2 %}
+              <li class="nav-item">
+                <a class="nav-link active" style="color:#E7DDF6;" aria-current="page" href="{% url 'guidelines' %}">Guidelines to Write a Post</a>
+              </li>
+              {% endif %}
+              <li class="nav-item">
+                <a class="nav-link active" style="color:#E7DDF6;" aria-current="page" href="{% url 'staff' %}">Staff</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" style="color:#E7DDF6;" aria-current="page" href="{% url 'request' %}">Request</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" style="color:#E7DDF6;" aria-current="page" href="{% url 'FAQ' %}">FAQ</a>
+              </li>
+            </ul>
+            <form action="{% url 'search' %}" class="d-flex" role="search" method="POST">
+              {% csrf_token %}
+              <input class="form-control me-2" name = "search" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-info" type="submit">Search</button>
+            </form>
+            {% if logged_in == 2 %}
+            <a class="btn btn-outline-light" style="margin-left: 20px; margin-right: 20px;" href="{% url 'logout' %}" role="button">Log Out</a>
+            {% endif %}
+            {% if logged_in == 1 %}
+            <a class="btn btn-outline-light" style="margin-left: 20px; margin-right: 20px;" href="{% url 'login' %}" role="button">Log In</a>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    <div class="guidelines" id="guidelines">
+        <div class="guides" style="margin-left: -500px; ">
+            <div>
+                <div class="card" style="background-color: transparent; width: 150%; border-color: transparent;">
+                  <div class="card-body">
+                    <h1 class="display-4" style="color: #E7DDF6;">Formatting</h1>
+                    <p class="lead" style="color: #E7DDF6;">
+                        Always format your article in markdown. 
+                        <br>
+                        Markdown cheat sheet: <a href="https://www.markdownguide.org/cheat-sheet/">https://www.markdownguide.org/cheat-sheet/</a>
+                        <br>
+                        You can use markdown to bold, italicize, highlight, add headings, quotes, lists, tables, etc. I encourage you to use these tools to make your articles more engaging and easy to read.
+                        <br>
+                        Embedding a Youtube video to enhance your article is strongly suggested. You can film a video of your own, or you can just use one you find on Youtube that fits the topic of your article. To find the embed code of a video, right click on the video and select "copy embed code". You can now embed this video into your article simply pasting it into the video embed textbox.
+                        <br>
+                        Please try to credit any sources used for research.
+                    </p>    
+                </div>
+            </div>
+            <div>
+                <div class="card" style="background-color: transparent; width: 150%; border-color: transparent;">
+                  <div class="card-body">
+                    <h1 class="display-4" style="color: #E7DDF6;">Content</h1>
+                    <p class="lead" style="color: #E7DDF6;">
+                        You are free to write on any STEM topics that interest you, however spreading misinformation, hate speech, or trolling will get your writer privileges revoked and your articles deleted.
+                        <br>
+                        Resources for research:
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-<a href="https://www.nasa.gov/">NASA</a>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-<a href="https://phys.org/">phys.org</a>
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-<a href="https://web.mit.edu/">MIT News</a>
+                        <br>
+                        Suggestions for articles you could write:
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-Relevant STEM news
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-Historical STEM topics
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-Applications of STEM in other fields
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-Tips on hard STEM courses
+                        <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;-Requests from readers that can be accessed through the admin website
+                                                
+                    </p>    
+                </div>
+            </div>
+        </div>
+  </div>
+    <script>
+      $('dash').scroll(function(){
+	      $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+      });
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+</body>
+</html>
